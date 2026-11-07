@@ -517,3 +517,100 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#a0c3ff
     padding: 5px 10px;
   }
 }
+
+/* Technical skills card follows the supplied two-column reference. */
+.about { grid-template-columns: minmax(0, 1fr); }
+.about > div { width: 100%; max-width: none; }
+.skills-card {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--navy);
+  color: var(--ink);
+}
+.skills-card > h2 { margin: 0 0 34px; font-size: clamp(26px, 3vw, 34px); font-weight: 700; letter-spacing: -.8px; }
+.skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 56px; }
+.skills-category { min-width: 0; }
+.skills-category h3 { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; font-size: clamp(19px, 2vw, 25px); font-weight: 600; line-height: 1.4; letter-spacing: -.4px; }
+.skills-category h3 svg { flex-shrink: 0; color: var(--blue); }
+.skills-category p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.85; overflow-wrap: anywhere; }
+@media (max-width: 680px) {
+  .skills-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .skills-card { border-radius: 20px; }
+  .skills-category h3 { margin-bottom: 10px; }
+}
+
+/* Give every navigation tab an equal share of the menu width. */
+@media screen and (min-width: 1001px) {
+  .site-header nav { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .site-header nav > a,
+  .site-header nav > .nav-contact {
+    width: 100%; height: 48px; min-height: 48px; margin: 0;
+    padding: 8px 4px; justify-content: center; text-align: center;
+    white-space: normal; font-size: 13px;
+  }
+  .site-header .nav-contact span { margin-left: 4px; }
+}
+@media screen and (max-width: 1000px) {
+  .site-header nav > a,
+  .site-header nav > .nav-contact {
+    width: 100%; height: 48px; min-height: 48px;
+    margin: 0; justify-content: center; text-align: center;
+  }
+}
+
+/* Align About with the shared full-width section layout. */
+.about.section { display: block; }
+.about .section-heading { width: 100%; }
+.about .about-copy { margin-top: 0; }
+
+/* About uses a full-width card within the same gutters as the other sections. */
+@media screen {
+  .about.section { width: 100%; max-width: none; margin-inline: 0; background: var(--paper); }
+  .about > .about-card {
+    width: 100%; max-width: none; padding: clamp(24px, 3vw, 40px);
+    border: 1px solid var(--line); border-radius: 26px;
+    background: var(--navy); color: var(--ink);
+  }
+  .about-card .section-heading { margin-bottom: 24px; }
+  .about-card h2 { text-wrap: initial; }
+}
+@media screen and (max-width: 680px) {
+  .about > .about-card { border-radius: 20px; }
+}
+
+/* Education shares the full-width card treatment used for About. */
+@media screen {
+  .education.section { display: block; width: 100%; max-width: none; margin-inline: 0; background: var(--paper); }
+  .education-card {
+    width: 100%; max-width: none; padding: clamp(24px, 3vw, 40px);
+    border: 1px solid var(--line); border-radius: 26px;
+    background: var(--navy); color: var(--ink);
+  }
+  .education-card > .education-list { margin-top: 32px; }
+  .education-card h2 { text-wrap: initial; }
+}
+@media screen and (max-width: 680px) {
+  .education-card { border-radius: 20px; }
+}
+
+/* Use the first experience card's treatment for every role. */
+@media screen {
+  .job,
+  .job:first-child,
+  .job:last-child {
+    padding: 30px;
+    margin: 0 0 24px;
+    border: 1px solid #344a68;
+    border-radius: 14px;
+    background: #17283f;
+    box-shadow: 0 8px 28px #0001;
+  }
+  .job:last-child { margin-bottom: 0; }
+}
+@media screen and (max-width: 1000px) {
+  .job, .job:first-child, .job:last-child { padding: 24px; }
+}
+@media screen and (max-width: 380px) {
+  .job, .job:first-child, .job:last-child { padding: 20px; }
+}

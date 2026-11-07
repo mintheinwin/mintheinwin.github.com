@@ -28,10 +28,13 @@ document.querySelector('.hero-copy').classList.add('reveal');
 const sectionLinks = [...navigation.querySelectorAll('a[href^="#"]')];
 const linkedSections = sectionLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
 function updateCurrentSection() {
-  const marker = window.scrollY + 150;
+  // Use the same offset as anchor scrolling, including the sticky header.
+  const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom;
+  const marker = Math.max(scrollPadding, headerBottom) + 2;
   let current = null;
   for (const section of linkedSections) {
-    if (section.offsetTop <= marker) current = section.id;
+    if (section.getBoundingClientRect().top <= marker) current = section.id;
   }
   for (const link of sectionLinks) {
     if (link.getAttribute('href') === '#' + current) link.setAttribute('aria-current', 'location');
