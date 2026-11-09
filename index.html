@@ -23,15 +23,15 @@
 <div class="system-node backend-node"><span class="diagram-kicker">REMOTE SYSTEM</span><svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="4" width="22" height="10" rx="2"/><rect x="5" y="18" width="22" height="10" rx="2"/><path d="M10 9h1m4 0h7m-12 14h1m4 0h7M16 14v4"/></svg><h4>Backend</h4><p>Receives the published MQTT message</p></div>
 </div>
 <div class="solenoid-control" role="group" aria-labelledby="solenoid-control-title">
-<div class="control-heading"><span class="diagram-kicker">CONNECTED SYSTEMS · DEVICE CONTROL</span><h4 id="solenoid-control-title">Bluetooth solenoid control</h4><p>Commands flow from the Android app to the solenoid, with response messages returning through the Raspberry Pi.</p></div>
+<div class="control-heading"><span class="diagram-kicker">CONNECTED SYSTEMS · DEVICE CONTROL</span><h4 id="solenoid-control-title">Bluetooth solenoid control</h4><p>The Android app sends Bluetooth commands to the Raspberry Pi and receives response messages. The Raspberry Pi sends a hardware command to open the solenoid.</p></div>
 <div class="control-flow">
 <div class="system-node"><h4>Android app</h4><p>Send control commands and receive response messages</p></div>
 <div class="connection"><span class="connection-label">Bluetooth</span><span class="flow-arrow" aria-hidden="true">→</span><span class="connection-detail">Control commands<br>App → Raspberry Pi</span><span class="flow-arrow" aria-hidden="true">←</span><span class="connection-detail">Response messages<br>Raspberry Pi → app</span></div>
-<div class="system-node"><h4>Raspberry Pi</h4><p>Control the solenoid and relay response messages to the app</p></div>
-<div class="connection"><span class="connection-label">Hardware control</span><span class="flow-arrow" aria-hidden="true">→</span><span class="connection-detail">Control commands<br>Raspberry Pi → solenoid</span><span class="flow-arrow" aria-hidden="true">←</span><span class="connection-detail">Response messages<br>Solenoid → Raspberry Pi</span></div>
-<div class="system-node"><h4>Solenoid</h4><p>Act on control commands and return a response</p></div>
+<div class="system-node"><h4>Raspberry Pi</h4><p>Open the solenoid and send response messages to the app</p></div>
+<div class="connection"><span class="connection-label">Hardware control</span><span class="flow-arrow" aria-hidden="true">→</span><span class="connection-detail">Open solenoid<br>Raspberry Pi → solenoid</span></div>
+<div class="system-node"><h4>Solenoid</h4><p>Open when commanded by the Raspberry Pi</p></div>
 </div></div>
-<figcaption id="sensor-diagram-caption"><span><i class="network-dot wifi-dot" aria-hidden="true"></i>Wi-Fi: sensor → Android app</span><span><i class="network-dot mobile-dot" aria-hidden="true"></i>Mobile data / MQTT: Android app ↔ backend</span><span><i class="network-dot wifi-dot" aria-hidden="true"></i>Commands &amp; responses: Android app ↔ Raspberry Pi (Bluetooth) ↔ solenoid (hardware control)</span></figcaption>
+<figcaption id="sensor-diagram-caption"><span><i class="network-dot wifi-dot" aria-hidden="true"></i>Wi-Fi: sensor → Android app</span><span><i class="network-dot mobile-dot" aria-hidden="true"></i>Mobile data / MQTT: Android app ↔ backend</span><span><i class="network-dot wifi-dot" aria-hidden="true"></i>Bluetooth: Android app ↔ Raspberry Pi · Hardware control: Raspberry Pi → solenoid (open)</span></figcaption>
 </figure></article>
 <article class="mobile-architecture banking-architecture" aria-labelledby="banking-architecture-title">
 <div class="architecture-intro"><p class="eyebrow">MOBILE BANKING ARCHITECTURE</p><h3 id="banking-architecture-title">Server-driven UI. Dynamic banking experiences.</h3><p>The Android app requests an XML UI layout from an Oracle-based backend, renders the mobile interface dynamically, and sends user input back through the API for transaction processing.</p></div>
